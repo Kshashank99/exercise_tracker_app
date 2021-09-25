@@ -1,15 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 
 const foodSchema = new mongoose.Schema({
     name:{
-        type:string,
+        type:String,
         required:true
     },
     data:{
-        type:object,
+        type:Object,
     }
 })
 
 
-module.exports = mongooose.model("food",foodSchema)
+module.exports = mongoose.model("food",foodSchema)

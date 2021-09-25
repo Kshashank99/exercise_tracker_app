@@ -5,29 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
     "start": "nodemon app.js"
-=======
-    "start":"nodemon app.js"
->>>>>>> be380f72368fa7069d8ff2dce718d5e7e7accbdc
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.4",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "mongoose": "^6.0.7",
-=======
     "express-jwt": "^6.1.0",
     "express-validator": "^6.12.1",
     "jsonwebtoken": "^8.5.1",
->>>>>>> be380f72368fa7069d8ff2dce718d5e7e7accbdc
+    "mongoose": "^6.0.7",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
     "script": "^0.1.4",
