@@ -8,8 +8,5 @@ router.get("/auth",root)
 router.post("/auth/signup",validateUser('name'),validateUser('email'),validateUser('password'),checkValidationResult,signup);
 router.post("/auth/signin",signin);
 router.get("/auth/signout",signout)
-router.get('/auth/page',requireSignin,(req,res)=>{
-    res.send("atuhorized page! ")
-})
 
 module.exports = router; 
