@@ -206,9 +206,12 @@ Variables
     }
     .links-container {
       height: auto !important;
+      display:flex;
+      align-items: center;
     }
     .links {
       display: flex;
+      margin: 0;
     }
     .links a {
       padding: 0;
