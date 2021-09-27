@@ -38,7 +38,7 @@ const loadDatabase = () =>{
 }
 
 
-exports.getExercise=(req,res)=>{
+exports.getExercises=(req,res)=>{
     loadDatabase();
     Exercise.find({},(err,data)=>{
         if(err){
@@ -50,6 +50,40 @@ exports.getExercise=(req,res)=>{
             res.json({
                 length:data.length,
                 data
+            })
+        }
+    })
+}
+
+exports.getExByCat = (req,res)=>{
+    let category = req.params.category;
+    Exercise.find({'category':category},(err,data)=>{
+        if(err){
+            res.json({
+                msg:err
+            })
+        }
+        else{
+            res.json({
+                length:data.length,
+                data
+            })
+        }
+    })
+}
+
+
+exports.getExCats = (req,res)=>{
+    Exercise.distinct('category',(err,cats)=>{
+        if(err){
+            res.json({
+                msg:err
+            })
+        }
+        else{
+            res.json({
+                length:cats.length,
+                categories:cats
             })
         }
     })
