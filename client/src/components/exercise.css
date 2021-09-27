@@ -137,11 +137,12 @@
   }
   
   .section-center {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: 35rem;
-    margin-top: 8rem;
-  }
+    /* width: 100vw; */
+    /* margin: 0 auto; */
+    /* max-width: 35rem; */
+    /* max-width: 100%;
+    margin-top: 4rem;
+  } */}
   @media screen and (min-width: 992px) {
     .section-center {
       width: 95vw;

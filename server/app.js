@@ -29,17 +29,17 @@ app.use(cors());
 //routes middlewares
 const authRouter = require("./routes/auth.js");
 const userRouter = require("./routes/user.js");
-const foodRouter = require("./routes/food.js")
+const foodRouter = require("./routes/food.js");
 
 app.use("/api", authRouter);
 app.use("/api", userRouter);
-app.use("/api",foodRouter)
+app.use("/api", foodRouter);
 
 app.get("/", (req, res) => {
 	res.end("chalu h madarchod!");
 });
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
 	console.log(`Server started and running on port ${port}`);

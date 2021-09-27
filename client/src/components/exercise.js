@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./exercise.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import Axios from "axios";
 // import List from './List';
 // import Alert from './Alert';
 const getLocalStorage = () => {
-	let list = localStorage.getItem("list");
-	if (list) {
-		return (list = JSON.parse(localStorage.getItem("list")));
+	let food = localStorage.getItem("food");
+	if (food) {
+		return (food = JSON.parse(localStorage.getItem("food")));
 	} else {
 		return [];
 	}
@@ -20,25 +21,41 @@ const Alert = ({ type, msg, removeAlert, list }) => {
 	}, [list]);
 	return <p className={`alert alert-${type}`}>{msg}</p>;
 };
-const List = ({ items, removeItem, editItem }) => {
+const List = ({ food, removeItem, editItem }) => {
 	return (
 		<div className='grocery-list'>
-			{items.map((item) => {
-				const { id, title } = item;
+			{food.map((foodItem) => {
+				const { _id, name, data } = foodItem;
 				return (
-					<article className='grocery-item' key={id}>
-						<p className='title'>{title}</p>
+					<article className='grocery-item' key={_id}>
+						<h4 className='title'>{name}</h4>
+						<div className='food_data'>
+							{data.calories.quantity}
+							{data.calories.unit}
+						</div>
+						<div className='food_data'>
+							{data.carbs.quantity}
+							{data.carbs.unit}
+						</div>
+						<div className='food_data'>
+							{data.protein.quantity}
+							{data.protein.unit}
+						</div>
+						<div className='food_data'>
+							{data.fats.quantity}
+							{data.fats.unit}
+						</div>
 						<div className='btn-container'>
 							<button
 								type='button'
 								className='edit-btn'
-								onClick={() => editItem(id)}>
+								onClick={() => editItem(_id)}>
 								<FaEdit />
 							</button>
 							<button
 								type='button'
 								className='delete-btn'
-								onClick={() => removeItem(id)}>
+								onClick={() => removeItem(_id)}>
 								<FaTrash />
 							</button>
 						</div>
@@ -50,6 +67,7 @@ const List = ({ items, removeItem, editItem }) => {
 };
 const Exercise = () => {
 	const [name, setName] = useState("");
+	const [food, setFood] = useState([]);
 	const [list, setList] = useState(getLocalStorage());
 	const [isEditing, setIsEditing] = useState(false);
 	const [editID, setEditID] = useState(null);
@@ -72,11 +90,39 @@ const Exercise = () => {
 			setIsEditing(false);
 			showAlert(true, "success", "value changed");
 		} else {
-			showAlert(true, "success", "item added to the list");
-			const newItem = { id: new Date().getTime().toString(), title: name };
+			Axios.post("http://localhost:8000/api/food/getFoodVals", {
+				item: name
+			}).then((response) => {
+				setFood([
+					...food,
+					{
+						id: response.data._id,
+						name: response.data.name,
+						data: response.data.data
+					}
+				]);
+				console.log(response.data);
+				// const food = { ...response.data };
+				console.log(response.data._id);
+				console.log(response.data.name);
+				console.log(response.data.data);
+				console.log(food);
+				// setListOfFriends([
+				//   ...listOfFriends,
+				//   { _id: response.data._id, name: name, age: age },
+				// ]);
+			});
+			//   .then((response) => {
+			//     setListOfFriends([
+			//       ...listOfFriends,
+			//       { _id: response.data._id, name: name, age: age },
+			//     ]);
+			//   });
+			// showAlert(true, "success", "item added to the list");
+			// const newItem = { id: new Date().getTime().toString(), title: name };
 
-			setList([...list, newItem]);
-			setName("");
+			// setList([...list, newItem]);
+			// setName("");
 		}
 	};
 
@@ -119,14 +165,39 @@ const Exercise = () => {
 					</button>
 				</div>
 			</form>
-			{list.length > 0 && (
+
+			{food.length > 0 && (
 				<div className='grocery-container'>
-					<List items={list} removeItem={removeItem} editItem={editItem} />
+					<List food={food} removeItem={removeItem} editItem={editItem} />
 					<button className='clear-btn' onClick={clearList}>
 						clear items
 					</button>
 				</div>
 			)}
+			{/* <div className="listOfFriends">
+        {listOfFriends.map((val) => {
+          return (
+            <div className="friendContainer">
+              <div className="friend">
+                <h3>Name: {val.name}</h3>
+                <h3> Age: {val.age}</h3>
+              </div>
+              <button
+                onClick={() => {
+                  updateFriend(val._id);
+                }}
+              >
+                Update
+              </button>
+              <button
+                id="removeBtn"
+                onClick={() => {
+                  deleteFriend(val._id);
+                }}
+              >
+                X
+              </button>
+            </div> */}
 		</section>
 	);
 };
