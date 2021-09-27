@@ -30,10 +30,12 @@ app.use(cors());
 const authRouter = require("./routes/auth.js");
 const userRouter = require("./routes/user.js");
 const foodRouter = require("./routes/food.js");
+const exerciseRouter = require("./routes/exercise.js");
 
 app.use("/api", authRouter);
 app.use("/api", userRouter);
 app.use("/api", foodRouter);
+app.use("/api", exerciseRouter);
 
 app.get("/", (req, res) => {
 	res.end("chalu h madarchod!");
