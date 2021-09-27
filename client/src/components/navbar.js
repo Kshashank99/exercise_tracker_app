@@ -33,7 +33,6 @@ const Navbar = () => {
 					<ul className='links' ref={linksRef}>
 						{links.map((link) => {
 							const { id, url, text } = link;
-							console.log(url)
 							return (
 								<li key={id}>
 									<Link to={url}>{text}</Link>

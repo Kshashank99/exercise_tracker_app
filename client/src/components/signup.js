@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-import Layout from "../core/Layout";
 import { signup } from "../auth";
 import { Link } from "react-router-dom";
 
@@ -25,6 +24,7 @@ const Signup = () => {
 			email: user.email,
 			password: user.password
 		}).then((data) => {
+			// console.log(data)
 			if (data.error) {
 				setUser({
 					...user,

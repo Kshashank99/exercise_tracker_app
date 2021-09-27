@@ -98,6 +98,7 @@ const Signin = () => {
 			<h2 align='center'>Loading...</h2>
 		</div>
 	);
+<<<<<<< HEAD
 
 	const redirectUser = () => {
 		if (values.redirectToReferrer) {
@@ -112,12 +113,29 @@ const Signin = () => {
 		}
 	};
 
+=======
+  
+	// const redirectUser = () => {
+	//   if (values.redirectToReferrer) {
+	// 	if(user && user.role === 1){ 
+	// 	  return <Redirect to="/admin/dashboard"></Redirect>;
+	// 	}
+	// 	else{ 
+	// 	  return <Redirect to="/user/dashboard"></Redirect>;
+	// 	}
+	//   }
+	//   if(isAuthenticated()){
+	// 	return <Redirect to="/"></Redirect>;
+	//   }
+	// };
+  
+>>>>>>> bd8cbd227adaff63a0fcc02b96994e3d4cd0215c
 	return (
 		<Fragment>
 			{dispError()}
 			{dispLoading()}
 			{signinForm()}
-			{redirectUser()}
+			{/* {redirectUser()} */}
 		</Fragment>
 	);
 };

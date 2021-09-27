@@ -1,26 +1,40 @@
 import { API } from "../config";
-import axios from 'axios'
+// import axios from 'axios'
 
 export const signup = (userVal) => {
-    return axios.post(`${API}/auth/signup`, userVal)
-      .then((response) => {
-        //  console.log(response)
-        return response;
+    return fetch(`http://localhost:8000/api/auth/signup`, {
+        method: "POST",
+        headers: {
+          Accept: "applcation/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userVal),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((response) => {
+           console.log(response)
+          return response.json();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
 export const signin = (userVal) => {
-    return axios.post(`${API}/auth/signin`,userVal)
-      .then((response) => {
-        //  console.log(response)
-        return response;
+    return fetch(`http://localhost:8000/api/auth/signin`, {
+        method: "POST",
+        headers: {
+          Accept: "applcation/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userVal),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((response) => {
+          //  console.log(response)
+          return response.json();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   export const authenticate = (data, cb) => {
