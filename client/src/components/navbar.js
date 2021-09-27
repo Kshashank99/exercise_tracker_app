@@ -33,9 +33,10 @@ const Navbar = () => {
 					<ul className='links' ref={linksRef}>
 						{links.map((link) => {
 							const { id, url, text } = link;
+							console.log(url)
 							return (
 								<li key={id}>
-									<a href={url}>{text}</a>
+									<Link to={url}>{text}</Link>
 								</li>
 							);
 						})}

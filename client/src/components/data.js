@@ -25,6 +25,16 @@ export const links = [
 		id: 5,
 		url: "/profile",
 		text: "profile"
+	},
+	{
+		id: 6,
+		url: "/signin",
+		text: "SignIn"
+	},
+	{
+		id: 7,
+		url: "/singup",
+		text: "SignUp"
 	}
 ];
 
