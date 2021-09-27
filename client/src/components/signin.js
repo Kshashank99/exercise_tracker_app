@@ -104,26 +104,26 @@ const Signin = () => {
 	  </div>
 	);
   
-	const redirectUser = () => {
-	  if (values.redirectToReferrer) {
-		if(user && user.role === 1){ 
-		  return <Redirect to="/admin/dashboard"></Redirect>;
-		}
-		else{ 
-		  return <Redirect to="/user/dashboard"></Redirect>;
-		}
-	  }
-	  if(isAuthenticated()){
-		return <Redirect to="/"></Redirect>;
-	  }
-	};
+	// const redirectUser = () => {
+	//   if (values.redirectToReferrer) {
+	// 	if(user && user.role === 1){ 
+	// 	  return <Redirect to="/admin/dashboard"></Redirect>;
+	// 	}
+	// 	else{ 
+	// 	  return <Redirect to="/user/dashboard"></Redirect>;
+	// 	}
+	//   }
+	//   if(isAuthenticated()){
+	// 	return <Redirect to="/"></Redirect>;
+	//   }
+	// };
   
 	return (
 		<Fragment>
 			{dispError()}
 			{dispLoading()}
 			{signinForm()}
-			{redirectUser()}
+			{/* {redirectUser()} */}
 		</Fragment>
 	  );
 }

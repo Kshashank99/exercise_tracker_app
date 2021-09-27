@@ -33,7 +33,7 @@ export const links = [
 	},
 	{
 		id: 7,
-		url: "/singup",
+		url: "/signup",
 		text: "SignUp"
 	}
 ];
