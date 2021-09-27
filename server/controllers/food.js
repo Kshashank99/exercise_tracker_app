@@ -11,7 +11,7 @@ exports.getFoodItem = (req,res)=>{
                 return res.json(foodItem)
             }
             else{
-                const response = axios.get(`${process.env.NUTAPP_END}?app_id=${process.env.NUTAPP_ID}&app_key=${process.env.NUTAPP_KEY}&ingr=${req.body.item}&nutrition-type=logging`)
+                axios.get(`${process.env.NUTAPP_END}?app_id=${process.env.NUTAPP_ID}&app_key=${process.env.NUTAPP_KEY}&ingr=${req.body.item}&nutrition-type=logging`)
                 .then(response=>{
                         const data = response.data.totalNutrients
                         if(Object.keys(response.data.totalNutrients).length>0){
