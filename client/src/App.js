@@ -10,8 +10,8 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import Exercise from "./components/exercise";
 import Home from "./components/home";
-import Signin from "./components/Signin";
-import Signup from "./components/Signup";
+// import Signin from "./components/Signin";
+// import Signup from "./components/Signup";
 import Food from "./components/food";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
@@ -22,8 +22,8 @@ function App() {
 			<Navbar />
 			<Switch>
 				<Route path='/' exact component={Home} />
-				<Route path='/signin' exact component={Signin} />
-				<Route path='/signup' exact component={Signup} />
+				{/* <Route path='/signin' exact component={Signin} /> */}
+				{/* <Route path='/signup' exact component={Signup} /> */}
 
 				{/* <PrivateRoute
           path="/user/dashboard"
