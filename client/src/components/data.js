@@ -3,7 +3,7 @@ import { FaBehance, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 export const links = [
 	{
 		id: 1,
-		url: "/",
+		url: "/dashboard",
 		text: "Dashboard"
 	},
 	{
@@ -27,14 +27,9 @@ export const links = [
 		text: "profile"
 	},
 	{
-		id: 6,
-		url: "/signin",
-		text: "SignIn"
-	},
-	{
-		id: 7,
-		url: "/signup",
-		text: "SignUp"
+		id: 6, 
+		url: "/signout",
+		text: "SignOut"
 	}
 ];
 
@@ -58,5 +53,24 @@ export const social = [
 		id: 4,
 		url: "https://www.twitter.com",
 		icon: <FaBehance />
+	}
+];
+
+
+export const auth = [
+	{
+		id: 1,
+		url: "/",
+		text: "Home"
+	},
+	{
+		id: 2,
+		url: "/signin",
+		text: "SignIn"
+	},
+	{
+		id: 3,
+		url: "/signup",
+		text: "SignUp"
 	}
 ];

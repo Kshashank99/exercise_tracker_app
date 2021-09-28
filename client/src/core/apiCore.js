@@ -33,3 +33,13 @@ export const getExercises = (category)=>{
         console.log(error)
     })
 }
+
+export const getCategories = ()=>{
+  axios.get(`${API}/exercise/categories`)
+  .then(response=>{
+    return response.categories
+  })
+  .catch(error=>{
+    console.log(error)
+  })
+}
