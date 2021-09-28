@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
-import { links, social } from "./data";
+import { links, social, auth } from "./data";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../auth";
 import logo from "./logo.svg";
 import "./navbar.css";
 const Navbar = () => {
@@ -29,7 +30,7 @@ const Navbar = () => {
 						<FaBars />
 					</button>
 				</div>
-				<div className='links-container' ref={linksContainerRef}>
+				{isAuthenticated() && <div className='links-container' ref={linksContainerRef}>
 					<ul className='links' ref={linksRef}>
 						{links.map((link) => {
 							const { id, url, text } = link;
@@ -40,7 +41,21 @@ const Navbar = () => {
 							);
 						})}
 					</ul>
+				</div>}
+				{!isAuthenticated() && <div className='links-container' ref={linksContainerRef}>
+					<ul className='links' ref={linksRef}>
+						{auth.map((link) => {
+							const { id, url, text } = link;
+							return (
+								<li key={id}>
+									<Link to={url}>{text}</Link>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
+
+				}
 				<ul className='social-icons'>
 					{social.map((socialIcon) => {
 						const { id, url, icon } = socialIcon;

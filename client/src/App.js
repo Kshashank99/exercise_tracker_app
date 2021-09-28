@@ -7,6 +7,8 @@ import {
 	Switch
 } from "react-router-dom";
 import "./App.css";
+import Dashboard from "./components/Dashboard";
+import PrivateRoute from "./auth/PrivateRoute";
 import Navbar from "./components/navbar";
 import Exercise from "./components/exercise";
 import Home from "./components/home";
@@ -24,15 +26,9 @@ function App() {
 				<Route path='/' exact component={Home} />
 				<Route path='/signin' exact component={Signin} />
 				<Route path='/signup' exact component={Signup} />
-
-				{/* <PrivateRoute
-          path="/user/dashboard"
-          exact
-          component={Dashboard}
-          /> */}
-
-				<Route path='/exercise' exact component={Exercise} />
-				<Route path='/food' exact component={Food} />
+				<PrivateRoute path="/dashboard" exact component={Dashboard} />
+				<PrivateRoute path='/exercise' exact component={Exercise} />
+				<PrivateRoute path='/food' exact component={Food} />
 			</Switch>
 		</BrowserRouter>
 	);
