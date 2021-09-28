@@ -3,9 +3,9 @@ import React from "react";
 const displaycategory = ({ categories, getExercises }) => {
 	return (
 		<div className='btn-container'>
-			{categories.map((item) => {
+			{categories.map((item,i) => {
 				return (
-					<button
+					<button key={i}
 						type='button'
 						className='filter-btn'
 						// key={index}

@@ -15,6 +15,7 @@ import Home from "./components/home";
 import Signin from "./components/signin";
 import Signup from "./components/signup";
 import Food from "./components/food";
+import ExerciseInfo from "./components/ExerciseInfo";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
 
@@ -27,7 +28,8 @@ function App() {
 				<Route path='/signin' exact component={Signin} />
 				<Route path='/signup' exact component={Signup} />
 				<PrivateRoute path='/dashboard' exact component={Dashboard} />
-				<PrivateRoute path='/exercise' exact component={Exercise} />
+				<Route path='/exercise' exact component={Exercise} />
+				<Route path='/exercise/exerciseInfo/:id' exact component={ExerciseInfo}/>
 				<PrivateRoute path='/food' exact component={Food} />
 			</Switch>
 		</BrowserRouter>
