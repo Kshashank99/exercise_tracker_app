@@ -19,7 +19,7 @@ const Profile = ({history}) => {
 
     const handleSubmit =()=>{
         let profile = JSON.parse(localStorage.getItem('jwt'))
-        console.log(profile)
+        // console.log(profile)
         axios.put(`http://localhost:8000/api/user/${profile.user._id}`,{name:name,age:age,gender:gender,height:height,weight:weight},{headers:{
                     Authorization: `Bearer ${profile.token}`
                 }})

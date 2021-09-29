@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./foods.css";
+import "./Routine.css";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Axios from "axios";
 import axios from "axios";
-// import List from './List';
-// import Alert from './Alert';
+
 
 const getLocalStorage = () => {
 	let food = localStorage.getItem("food");
@@ -22,37 +22,21 @@ const Alert = ({ type, msg, removeAlert, list }) => {
 	}, [list]);
 	return <p className={`alert alert-${type}`}>{msg}</p>;
 };
-const List = ({ food, removeItem, editItem }) => {
+const List = ({ exercise, removeItem }) => {
 	return (
 		<div className='grocery-list'>
-			<div>
-				<ul style={{ display: "flex", justifyContent: "space-around" }}>
-					<h4 className='title'>Food</h4>
-					<h4 className='title'>calorie</h4>
-					<h4 className='title'>Fat</h4>
-					<h4 className='title'>carbs</h4>
-				</ul>
-			</div>
-			{food.map((foodItem) => {
-				const { _id, name, data } = foodItem;
+			{exercise.map((exercise,ind) => {
+				
 				return (
-					<article className='grocery-item' key={_id}>
-						<h4 className='title'>{name}</h4>
-						<div className='food_data'>
-							{data.calories.quantity}
-							{data.calories.unit}
-						</div>
-						<div className='food_data'>
-							{data.carbs.quantity}
-							{data.carbs.unit}
-						</div>
-						<div className='food_data'>
-							{data.protein.quantity}
-							{data.protein.unit}
-						</div>
-						<div className='food_data'>
-							{data.fats.quantity}
-							{data.fats.unit}
+					<article className='grocery-item' key={ind}>
+						<h4 className='title'>{exercise}</h4>
+						<div className='btn-container'>
+							<button
+								type='button'
+								className='delete-btn'
+								onClick={() => removeItem(ind)}>
+								<FaTrash />
+							</button>
 						</div>
 					</article>
 				);
@@ -60,21 +44,24 @@ const List = ({ food, removeItem, editItem }) => {
 		</div>
 	);
 };
-const FoodLog = () => {
+
+
+const Routine = () => {
 	const [name, setName] = useState("");
-	const [food, setFood] = useState([]);
+	const [exercise, setExercises] = useState([]);
 	const [list, setList] = useState(getLocalStorage());
 	const [isEditing, setIsEditing] = useState(false);
 	const [editID, setEditID] = useState(null);
 	const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
-    const getFood =()=>{
+    
+    const getExercises =()=>{
         let user = JSON.parse(localStorage.getItem('jwt'))
         axios.get(`http://localhost:8000/api/user/${user.user._id}`,{
             headers:{
                 Authorization:`Bearer ${user.token}`
             }
         }).then(response=>{
-            setFood(response.data.user.food_history)
+            setExercises(response.data.user.workout_history)
             // console.log(response.data.user.food_history)
         })
         .catch(error=>{ 
@@ -82,11 +69,11 @@ const FoodLog = () => {
         })
     }
     useEffect(()=>{
-        getFood()
+        getExercises()
     },[])
-    const updateFoodHistory=()=>{
+    const updateWorkoutHistory=()=>{
         let user = JSON.parse(localStorage.getItem('jwt'))
-                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{food_history:food},{headers:{
+                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{workout_history:exercise},{headers:{
                     Authorization: `Bearer ${user.token}`
                 }})
                 .then(response=>{
@@ -96,9 +83,9 @@ const FoodLog = () => {
                     console.log(error)
                 })
     }
-    const clearFoodHistory=()=>{
+    const clearWorkoutHistory=()=>{
         let user = JSON.parse(localStorage.getItem('jwt'))
-                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{food_history:[]},{headers:{
+                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{workout_history:[]},{headers:{
                     Authorization: `Bearer ${user.token}`
                 }})
                 .then(response=>{
@@ -108,58 +95,34 @@ const FoodLog = () => {
                     console.log(error)
                 })
     }
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name) {
 			showAlert(true, "danger", "please enter value");
-		} else if (name && isEditing) {
-			setList(
-				list.map((item) => {
-					if (item.id === editID) {
-						return { ...item, title: name };
-					}
-					return item;
-				})
-			);
-			setName("");
-			setEditID(null);
-			setIsEditing(false);
-			showAlert(true, "success", "value changed");
-		} else {
-			Axios.post("http://localhost:8000/api/food/getFoodVals", {
-				item: name
-			}).then((response) => {
-				setFood([
-					...food,
-					{
-						id: response.data._id,
-						name: response.data.name,
-						data: response.data.data
-					}
-				]);
-			});
-
+		}  
+        else {
+			setExercises([...exercise,name])
 		}
 	};
 
 	const showAlert = (show = false, type = "", msg = "") => {
 		setAlert({ show, type, msg });
 	};
+
 	const clearList = () => {
 		showAlert(true, "danger", "empty list");
-		setFood([]);
-        clearFoodHistory();
+		setExercises([]);
+        clearWorkoutHistory();
 	};
+
 	const removeItem = (id) => {
 		showAlert(true, "danger", "item removed");
-		setList(list.filter((item) => item.id !== id));
+        let ex= [...exercise]
+        ex.splice(id,1)
+		setExercises(ex);
 	};
-	const editItem = (id) => {
-		const specificItem = list.find((item) => item.id === id);
-		setIsEditing(true);
-		setEditID(id);
-		setName(specificItem.title);
-	};
+
 	useEffect(() => {
 		localStorage.setItem("list", JSON.stringify(list));
 	}, [list]);
@@ -168,12 +131,12 @@ const FoodLog = () => {
 			<form className='grocery-form' onSubmit={handleSubmit}>
 				{alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
 
-				<h3>Food Log</h3>
+				<h3>Workout Routine</h3>
 				<div className='form-control'>
 					<input
 						type='text'
 						className='grocery'
-						placeholder='e.g eggs, milk'
+						placeholder='e.g push-ups benchpress'
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 					/>
@@ -183,10 +146,10 @@ const FoodLog = () => {
 				</div>
 			</form>
 
-			{food.length > 0 && (
+			{exercise.length > 0 && (
 				<div className='grocery-container'>
-                    {updateFoodHistory()}
-					<List food={food} removeItem={removeItem} editItem={editItem} />
+                    {updateWorkoutHistory()}
+					<List exercise={exercise} removeItem={removeItem} />
 					<button className='clear-btn' onClick={clearList}>
 						clear items
 					</button>
@@ -196,4 +159,4 @@ const FoodLog = () => {
 	);
 };
 
-export default FoodLog;
+export default Routine;
