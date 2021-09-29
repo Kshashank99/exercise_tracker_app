@@ -4,6 +4,7 @@ import { links, social, auth } from "./data";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import logo from "./logo.svg";
+// import Link  from "react-router-dom";
 import "./navbar.css";
 const Navbar = () => {
 	const [showLinks, setShowLinks] = useState(false);
@@ -21,41 +22,45 @@ const Navbar = () => {
 		}
 	}, [showLinks]);
 	return (
-		<nav>
+		<nav style={{ position: "relative", zIndex: "999999" }}>
 			<div className='nav-center'>
 				<div className='nav-header'>
 					{/* <img src={logo} className='logo' alt='logo' /> */}
-					<div className='navbar-brand'>ExcerTracker </div>
+					<Link style={{ textDecoration: "none", color: "black" }} to='/'>
+						<div className='navbar-brand'>ExcerTracker </div>
+					</Link>
 					<button className='nav-toggle' onClick={toggleLinks}>
 						<FaBars />
 					</button>
 				</div>
-				{isAuthenticated() && <div className='links-container' ref={linksContainerRef}>
-					<ul className='links' ref={linksRef}>
-						{links.map((link) => {
-							const { id, url, text } = link;
-							return (
-								<li key={id}>
-									<Link to={url}>{text}</Link>
-								</li>
-							);
-						})}
-					</ul>
-				</div>}
-				{!isAuthenticated() && <div className='links-container' ref={linksContainerRef}>
-					<ul className='links' ref={linksRef}>
-						{auth.map((link) => {
-							const { id, url, text } = link;
-							return (
-								<li key={id}>
-									<Link to={url}>{text}</Link>
-								</li>
-							);
-						})}
-					</ul>
-				</div>
-
-				}
+				{isAuthenticated() && (
+					<div className='links-container' ref={linksContainerRef}>
+						<ul className='links' ref={linksRef}>
+							{links.map((link) => {
+								const { id, url, text } = link;
+								return (
+									<li key={id}>
+										<Link to={url}>{text}</Link>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
+				)}
+				{!isAuthenticated() && (
+					<div className='links-container' ref={linksContainerRef}>
+						<ul className='links' ref={linksRef}>
+							{auth.map((link) => {
+								const { id, url, text } = link;
+								return (
+									<li key={id}>
+										<Link to={url}>{text}</Link>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
+				)}
 				<ul className='social-icons'>
 					{social.map((socialIcon) => {
 						const { id, url, icon } = socialIcon;

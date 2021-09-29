@@ -7,11 +7,11 @@ import {
 	Switch
 } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./auth/PrivateRoute";
 import Navbar from "./components/navbar";
 import Exercise from "./components/exercise/exercise";
-import Home from "./components/home";
+import Home from "./components/Home/Home.js";
 import Signin from "./components/signin";
 import Routine from "./components/Routine/Routine";
 import Signup from "./components/signup";
