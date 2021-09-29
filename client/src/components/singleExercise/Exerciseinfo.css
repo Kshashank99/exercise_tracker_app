@@ -1,0 +1,58 @@
+:root {
+    --primaryLightColor: #d4e6a5;
+    --primaryColor: #476a2e;
+    --primaryDarkColor: #c02c03;
+    --mainWhite: #fff;
+    --offWhite: #f7f7f7;
+    --mainBackground: #f1f5f8;
+    --mainOverlay: rgba(35, 10, 36, 0.4);
+    --mainBlack: #222;
+    --mainGrey: #ececec;
+    --darkGrey: #afafaf;
+    --mainRed: #bd0303;
+    --mainTransition: all 0.3s linear;
+    --mainSpacing: 0.3rem;
+    --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+    --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+    --mainBorderRadius: 0.25rem;
+    --smallWidth: 85vw;
+    --maxWidth: 40rem;
+    --fullWidth: 1170px;
+  }
+
+  .section {
+    padding: 5rem 0;
+  }
+  .cocktail-section {
+    text-align: center;
+  }
+  .section-title {
+    font-size: 2rem;
+    text-transform: capitalize;
+    letter-spacing: var(--mainSpacing);
+    text-align: center;
+    margin-bottom: 3.5rem;
+    margin-top: 1rem;
+  }
+  .drink {
+    width: var(--smallWidth);
+    max-width: var(--fullWidth);
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+  }
+  .drink-info {
+    padding-top: 2rem;
+  }
+  .drink-data {
+    background: var(--primaryLightColor);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--mainBorderRadius);
+    color: var(--primaryColor);
+    height: fit-content;
+    margin: 0  10px 0 10px; 
+  }
+  .pic{
+      width: 75rem;
+      margin-right: 20px;
+  }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+import "./Exerciseinfo.css";
 
 const ExerciseInfo = ({ location }) => {
 	const [exercise, setExercise] = useState({
@@ -27,14 +28,35 @@ const ExerciseInfo = ({ location }) => {
 
 	const renderExercise = () => (
 		<>
-			<h3>{exercise.name}</h3>
-			<p>{exercise.category}</p>
-			<h4>Description</h4>
-			<p>{exercise.description}</p>
-			<h4>Equipments</h4>
-			{exercise.equipments.map((el, i) => (
-				<p key={i}>{el}</p>
-			))}
+			<section className='section cocktail-section'>
+				{/* <Link to='/' className='btn btn-primary'>
+					back home
+				</Link> */}
+				<h2 className='section-title'>{exercise.name}</h2>
+				<div className='drink'>
+					<img
+						className='pic'
+						src={`https://i.pinimg.com/736x/b8/63/9d/b8639dce878a0077935d168ddd924117.jpg`}
+						alt={exercise.name}></img>
+					<div className='drink-info'>
+						<p style={{ display: "flex" }}>
+							<span className='drink-data'>category :</span> {exercise.category}
+						</p>
+						<p style={{ display: "flex", alignItem: "flex-start" }}>
+							<span className='drink-data'>Description:</span>{" "}
+							<div>{exercise.description}</div>
+						</p>
+						<p style={{ display: "flex" }}>
+							<span className='drink-data'>Equipments :</span>{" "}
+							{exercise.equipments.map((el, i) => (
+								<div style={{ display: "flex", margin: "0  10px 0 10px" }}>
+									<p key={i}>{el}</p>
+								</div>
+							))}
+						</p>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 
