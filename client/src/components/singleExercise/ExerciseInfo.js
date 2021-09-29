@@ -13,7 +13,7 @@ const ExerciseInfo = ({ location }) => {
 	const getExercise = () => {
 		const id = location.pathname.replace("/exercise/exerciseInfo/", "");
 		axios
-			.get(`http://localhost:8000/api/exercise/getExercise/${id}`)
+			.get(`https://xer-app.herokuapp.com/exercise/getExercise/${id}`)
 			.then((response) => {
 				setExercise({ ...response.data.data });
 				// console.log(response.data.data);
