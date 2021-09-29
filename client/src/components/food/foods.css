@@ -301,3 +301,26 @@
   .btn-container{
       margin: 0;
   }
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin: 0 auto;
+  }
+  
+  th {
+    /* background-color: #4287f5; */
+    color:black;
+  }
+  
+  th,
+  td {
+    width: 150px;
+    text-align: center;
+    /* border: 1px solid black; */
+    padding: 5px;
+  }
+  
+  h2 {
+    color: #4287f5;
+  }

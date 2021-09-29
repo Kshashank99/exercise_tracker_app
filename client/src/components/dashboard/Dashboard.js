@@ -1,28 +1,64 @@
-// import React from "react";
-// import "./Dashboard.css";
+import React from "react";
+import "./Dashboard.css";
 // import phoneImg from "./images/phone.svg";
-// const Dashboard = () => {
-// 	return (
-// 		<section className='hero'>
-// 			<div className='hero-center'>
-// 				<article className='hero-info'>
-// 					<h1>
-// 						Welcome to <br />
-// 						fitness World
-// 					</h1>
-// 					<p>
-// 						Millions of companies of all sizes—from startups to Fortune 500s—use
-// 						Stripe’s software and APIs to accept payments, send payouts, and
-// 						manage their businesses online.
-// 					</p>
-// 					<button className='btn'>Start now</button>
-// 				</article>
-// 				<article className='hero-images'>
-// 					<img src={phoneImg} className='phone-img' alt='phone' />
-// 				</article>
-// 			</div>
-// 		</section>
-// 	);
-// };
+const Review = () => {
+	// const [index, setIndex] = useState(0);
+	// const { name, job, image, text } = people[index];
+	// const checkNumber = (number) => {
+	//   if (number > people.length - 1) {
+	//     return 0;
+	//   }
+	//   if (number < 0) {
+	//     return people.length - 1;
+	//   }
+	//   return number;
+	// };
+	// const nextPerson = () => {
+	//   setIndex((index) => {
+	//     let newIndex = index + 1;
+	//     return checkNumber(newIndex);
+	//   });
+	// };
+	// const prevPerson = () => {
+	//   setIndex((index) => {
+	//     let newIndex = index - 1;
+	//     return checkNumber(newIndex);
+	//   });
+	// };
+	// const randomPerson = () => {
+	//   let randomNumber = Math.floor(Math.random() * people.length);
+	//   if (randomNumber === index) {
+	//     randomNumber = index + 1;
+	//   }
+	//   setIndex(checkNumber(randomNumber));
+	// };
 
-// export default Dashboard;
+	return (
+		<article className='review'>
+			<div className='img-container'>
+				<img
+					src={`https://i.pinimg.com/736x/b8/63/9d/b8639dce878a0077935d168ddd924117.jpg`}
+					alt='name'
+					className='person-img'
+				/>
+				<span className='quote-icon'>{/* <FaQuoteRight /> */}</span>
+			</div>
+			<h4 className='author'>sahsank</h4>
+			<p className='job'>developer</p>
+			<p className='info'>Lorem Ipsum</p>
+		</article>
+	);
+};
+const Dashboard = () => {
+	return (
+		<section className='container'>
+			<div className='title'>
+				<h2>our reviews</h2>
+				<div className='underline'></div>
+			</div>
+			<Review />
+		</section>
+	);
+};
+
+export default Dashboard;

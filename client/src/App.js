@@ -19,6 +19,7 @@ import Signup from "./components/signup";
 import FoodLog from "./components/food/FoodLog";
 import ExerciseInfo from "./components/singleExercise/ExerciseInfo";
 import Profile from "./components/Profile";
+// import Routine from "./components/Routine/Routine";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
 
@@ -40,6 +41,7 @@ function App() {
 				/>
 				<PrivateRoute path='/food' exact component={FoodLog} />
 				<PrivateRoute path='/profile' exact component={Profile} />
+				<PrivateRoute path='/routine' exact component={Routine} />
 			</Switch>
 		</BrowserRouter>
 	);
