@@ -4,7 +4,6 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import Axios from "axios";
 import axios from "axios";
 
-
 const getLocalStorage = () => {
 	let food = localStorage.getItem("food");
 	if (food) {
@@ -25,8 +24,7 @@ const Alert = ({ type, msg, removeAlert, list }) => {
 const List = ({ exercise, removeItem }) => {
 	return (
 		<div className='grocery-list'>
-			{exercise.map((exercise,ind) => {
-				
+			{exercise.map((exercise, ind) => {
 				return (
 					<article className='grocery-item' key={ind}>
 						<h4 className='title'>{exercise}</h4>
@@ -45,7 +43,6 @@ const List = ({ exercise, removeItem }) => {
 	);
 };
 
-
 const Routine = () => {
 	const [name, setName] = useState("");
 	const [exercise, setExercises] = useState([]);
@@ -53,56 +50,71 @@ const Routine = () => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editID, setEditID] = useState(null);
 	const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
-    
-    const getExercises =()=>{
-        let user = JSON.parse(localStorage.getItem('jwt'))
-        axios.get(`http://localhost:8000/api/user/${user.user._id}`,{
-            headers:{
-                Authorization:`Bearer ${user.token}`
-            }
-        }).then(response=>{
-            setExercises(response.data.user.workout_history)
-            // console.log(response.data.user.food_history)
-        })
-        .catch(error=>{ 
-            console.log(error)
-        })
-    }
-    useEffect(()=>{
-        getExercises()
-    },[])
-    const updateWorkoutHistory=()=>{
-        let user = JSON.parse(localStorage.getItem('jwt'))
-                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{workout_history:exercise},{headers:{
-                    Authorization: `Bearer ${user.token}`
-                }})
-                .then(response=>{
-                    // console.log(response)
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
-    }
-    const clearWorkoutHistory=()=>{
-        let user = JSON.parse(localStorage.getItem('jwt'))
-                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{workout_history:[]},{headers:{
-                    Authorization: `Bearer ${user.token}`
-                }})
-                .then(response=>{
-                    console.log(response)
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
-    }
+
+	const getExercises = () => {
+		let user = JSON.parse(localStorage.getItem("jwt"));
+		axios
+			.get(`http://localhost:8000/api/user/${user.user._id}`, {
+				headers: {
+					Authorization: `Bearer ${user.token}`
+				}
+			})
+			.then((response) => {
+				setExercises(response.data.user.workout_history);
+				// console.log(response.data.user.food_history)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+	useEffect(() => {
+		getExercises();
+	}, []);
+	const updateWorkoutHistory = () => {
+		let user = JSON.parse(localStorage.getItem("jwt"));
+		axios
+			.put(
+				`http://localhost:8000/api/user/${user.user._id}`,
+				{ workout_history: exercise },
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`
+					}
+				}
+			)
+			.then((response) => {
+				// console.log(response)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+	const clearWorkoutHistory = () => {
+		let user = JSON.parse(localStorage.getItem("jwt"));
+		axios
+			.put(
+				`http://localhost:8000/api/user/${user.user._id}`,
+				{ workout_history: [] },
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`
+					}
+				}
+			)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name) {
 			showAlert(true, "danger", "please enter value");
-		}  
-        else {
-			setExercises([...exercise,name])
+		} else {
+			setExercises([...exercise, name]);
 		}
 	};
 
@@ -113,13 +125,13 @@ const Routine = () => {
 	const clearList = () => {
 		showAlert(true, "danger", "empty list");
 		setExercises([]);
-        clearWorkoutHistory();
+		clearWorkoutHistory();
 	};
 
 	const removeItem = (id) => {
 		showAlert(true, "danger", "item removed");
-        let ex= [...exercise]
-        ex.splice(id,1)
+		let ex = [...exercise];
+		ex.splice(id, 1);
 		setExercises(ex);
 	};
 
@@ -148,7 +160,7 @@ const Routine = () => {
 
 			{exercise.length > 0 && (
 				<div className='grocery-container'>
-                    {updateWorkoutHistory()}
+					{updateWorkoutHistory()}
 					<List exercise={exercise} removeItem={removeItem} />
 					<button className='clear-btn' onClick={clearList}>
 						clear items

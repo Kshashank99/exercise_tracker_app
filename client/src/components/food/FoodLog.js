@@ -55,47 +55,63 @@ const FoodLog = () => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editID, setEditID] = useState(null);
 	const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
-    const getFood =()=>{
-        let user = JSON.parse(localStorage.getItem('jwt'))
-        axios.get(`http://localhost:8000/api/user/${user.user._id}`,{
-            headers:{
-                Authorization:`Bearer ${user.token}`
-            }
-        }).then(response=>{
-            setFood(response.data.user.food_history)
-            // console.log(response.data.user.food_history)
-        })
-        .catch(error=>{ 
-            console.log(error)
-        })
-    }
-    useEffect(()=>{
-        getFood()
-    },[])
-    const updateFoodHistory=()=>{
-        let user = JSON.parse(localStorage.getItem('jwt'))
-                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{food_history:food},{headers:{
-                    Authorization: `Bearer ${user.token}`
-                }})
-                .then(response=>{
-                    // console.log(response)
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
-    }
-    const clearFoodHistory=()=>{
-        let user = JSON.parse(localStorage.getItem('jwt'))
-                axios.put(`http://localhost:8000/api/user/${user.user._id}`,{food_history:[]},{headers:{
-                    Authorization: `Bearer ${user.token}`
-                }})
-                .then(response=>{
-                    console.log(response)
-                })
-                .catch(error=>{
-                    console.log(error)
-                })
-    }
+	const getFood = () => {
+		let user = JSON.parse(localStorage.getItem("jwt"));
+		axios
+			.get(`http://localhost:8000/api/user/${user.user._id}`, {
+				headers: {
+					Authorization: `Bearer ${user.token}`
+				}
+			})
+			.then((response) => {
+				setFood(response.data.user.food_history);
+				// console.log(response.data.user.food_history)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+	useEffect(() => {
+		getFood();
+	}, []);
+	const updateFoodHistory = () => {
+		let user = JSON.parse(localStorage.getItem("jwt"));
+		axios
+			.put(
+				`http://localhost:8000/api/user/${user.user._id}`,
+				{ food_history: food },
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`
+					}
+				}
+			)
+			.then((response) => {
+				// console.log(response)
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+	const clearFoodHistory = () => {
+		let user = JSON.parse(localStorage.getItem("jwt"));
+		axios
+			.put(
+				`http://localhost:8000/api/user/${user.user._id}`,
+				{ food_history: [] },
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`
+					}
+				}
+			)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!name) {
@@ -117,6 +133,7 @@ const FoodLog = () => {
 			Axios.post("http://localhost:8000/api/food/getFoodVals", {
 				item: name
 			}).then((response) => {
+				console.log("response", response);
 				setFood([
 					...food,
 					{
@@ -126,7 +143,6 @@ const FoodLog = () => {
 					}
 				]);
 			});
-
 		}
 	};
 
@@ -136,7 +152,7 @@ const FoodLog = () => {
 	const clearList = () => {
 		showAlert(true, "danger", "empty list");
 		setFood([]);
-        clearFoodHistory();
+		clearFoodHistory();
 	};
 	const removeItem = (id) => {
 		showAlert(true, "danger", "item removed");
@@ -173,7 +189,7 @@ const FoodLog = () => {
 
 			{food.length > 0 && (
 				<div className='grocery-container'>
-                    {updateFoodHistory()}
+					{updateFoodHistory()}
 					<List food={food} removeItem={removeItem} editItem={editItem} />
 					<button className='clear-btn' onClick={clearList}>
 						clear items

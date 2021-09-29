@@ -27,7 +27,7 @@ export const links = [
 		text: "profile"
 	},
 	{
-		id: 6, 
+		id: 6,
 		url: "/signout",
 		text: "SignOut"
 	}
@@ -55,7 +55,6 @@ export const social = [
 		icon: <FaBehance />
 	}
 ];
-
 
 export const auth = [
 	{
