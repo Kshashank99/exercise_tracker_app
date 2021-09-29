@@ -29,9 +29,17 @@ const userSchema = new mongoose.Schema({
         type:Array,
         default:[]
     },
-    about: {
-        type:String, 
-        trim: true
+    height:{
+        type:Number
+    },
+    weight:{
+        type:Number
+    },
+    age:{
+        type:Number
+    },
+    gender:{
+        type:String
     },
     salt: String,
 },{
