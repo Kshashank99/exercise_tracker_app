@@ -6,7 +6,7 @@ import { isAuthenticated } from "../auth";
 import logo from "./logo.svg";
 // import Link  from "react-router-dom";
 import "./navbar.css";
-const Navbar = () => {
+const Navbar = ({authenticated}) => {
 	const [showLinks, setShowLinks] = useState(false);
 	const linksContainerRef = useRef(null);
 	const linksRef = useRef(null);
@@ -33,7 +33,7 @@ const Navbar = () => {
 						<FaBars />
 					</button>
 				</div>
-				{isAuthenticated() && (
+				{authenticated && (
 					<div className='links-container' ref={linksContainerRef}>
 						<ul className='links' ref={linksRef}>
 							{links.map((link) => {
@@ -47,7 +47,7 @@ const Navbar = () => {
 						</ul>
 					</div>
 				)}
-				{!isAuthenticated() && (
+				{!authenticated && (
 					<div className='links-container' ref={linksContainerRef}>
 						<ul className='links' ref={linksRef}>
 							{auth.map((link) => {

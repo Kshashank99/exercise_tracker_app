@@ -1,38 +1,8 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
+import axios from 'axios'
 import "./Dashboard.css";
 // import phoneImg from "./images/phone.svg";
-const Review = () => {
-	// const [index, setIndex] = useState(0);
-	// const { name, job, image, text } = people[index];
-	// const checkNumber = (number) => {
-	//   if (number > people.length - 1) {
-	//     return 0;
-	//   }
-	//   if (number < 0) {
-	//     return people.length - 1;
-	//   }
-	//   return number;
-	// };
-	// const nextPerson = () => {
-	//   setIndex((index) => {
-	//     let newIndex = index + 1;
-	//     return checkNumber(newIndex);
-	//   });
-	// };
-	// const prevPerson = () => {
-	//   setIndex((index) => {
-	//     let newIndex = index - 1;
-	//     return checkNumber(newIndex);
-	//   });
-	// };
-	// const randomPerson = () => {
-	//   let randomNumber = Math.floor(Math.random() * people.length);
-	//   if (randomNumber === index) {
-	//     randomNumber = index + 1;
-	//   }
-	//   setIndex(checkNumber(randomNumber));
-	// };
-
+const Review = ({user}) => {
 	return (
 		<article className='review'>
 			<div className='img-container'>
@@ -43,20 +13,46 @@ const Review = () => {
 				/>
 				<span className='quote-icon'>{/* <FaQuoteRight /> */}</span>
 			</div>
-			<h4 className='author'>sahsank</h4>
-			<p className='job'>developer</p>
-			<p className='info'>Lorem Ipsum</p>
+			{/* <h4 className='author'>sahsank</h4> */}
+			<p className='info'>Height: {user.height} Cm</p>
+			<p className='info'>Weight: {user.weight} Kg</p>
+			<div style={{margin:'0 auto'}}>
+				<p className='info'>Workout Routine</p>
+				<ul style={{margin:'0 auto'}}>
+				{user.workout_history.map((el,i)=>(
+					<li key={i}>{el}</li>
+				))}
+				</ul>
+			</div>
 		</article>
 	);
 };
 const Dashboard = () => {
+	const [user,setUser] = useState({name:"",workout_history:[],height:"",weight:""})
+	const getUser=()=>{
+		let userJWT=JSON.parse(localStorage.getItem('jwt'))
+		axios.get(`http://localhost:8000/api/user/${userJWT.user._id}`,{headers:{
+			Authorization: `Bearer ${userJWT.token}`
+		}})
+		.then(response=>{
+			let User = response.data.user
+			setUser(User)
+			console.log(response.data.user)
+		})
+		.catch(error=>{
+			console.log(error)
+		})
+	}
+	useEffect(()=>{
+		getUser()
+	},[])
 	return (
 		<section className='container'>
 			<div className='title'>
-				<h2>our reviews</h2>
+				<h2>{user.name}</h2>
 				<div className='underline'></div>
 			</div>
-			<Review />
+			<Review user={user}/>
 		</section>
 	);
 };

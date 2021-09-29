@@ -22,11 +22,12 @@ import Profile from "./components/Profile";
 // import Routine from "./components/Routine/Routine";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
-
+import Signout from "./components/Signout";
+import { isAuthenticated } from "./auth";
 function App() {
 	return (
 		<BrowserRouter>
-			<Navbar />
+			<Navbar authenticated={isAuthenticated()}/>
 			<Switch>
 				<Route path='/' exact component={Home} />
 				<Route path='/signin' exact component={Signin} />
@@ -42,6 +43,7 @@ function App() {
 				<PrivateRoute path='/food' exact component={FoodLog} />
 				<PrivateRoute path='/profile' exact component={Profile} />
 				<PrivateRoute path='/routine' exact component={Routine} />
+				<Route path="/signout" exact component={Signout}/>
 			</Switch>
 		</BrowserRouter>
 	);

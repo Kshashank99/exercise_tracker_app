@@ -55,3 +55,16 @@ export const signin = (userVal) => {
       return false;
     }
   };
+
+  export const signout = (cb) => {
+    // console.log("clicked! ");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("jwt");
+      cb();
+      return fetch(`${API}/auth/signout`, {
+        method: "GET",
+      })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+    }
+  };
