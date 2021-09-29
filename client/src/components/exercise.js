@@ -12,7 +12,7 @@ import SelectedExercise from "./selectedexercise.js";
 const Exercise = () => {
 	const getExercises = (cat) => {
 		axios
-			.get(`http://localhost:8000/api/exercise/getExercise/${cat}`)
+			.get(`http://localhost:8000/api/exercise/getExercises/${cat}`)
 			.then((response) => {
 				// console.log(response.data.data)
 				setExercises(response.data.data);
