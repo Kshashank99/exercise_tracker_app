@@ -2,7 +2,7 @@ import { API } from "../config";
 // import axios from 'axios'
 
 export const signup = (userVal) => {
-    return fetch(`http://localhost:8000/api/auth/signup`, {
+    return fetch(`https://xercise-tracker.herokuapp.com/auth/signup`, {
         method: "POST",
         headers: {
           Accept: "applcation/json",
@@ -20,7 +20,7 @@ export const signup = (userVal) => {
   };
 
 export const signin = (userVal) => {
-    return fetch(`http://localhost:8000/api/auth/signin`, {
+    return fetch(`https://xercise-tracker.herokuapp.com/auth/signin`, {
         method: "POST",
         headers: {
           Accept: "applcation/json",

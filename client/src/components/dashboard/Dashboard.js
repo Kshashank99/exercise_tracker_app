@@ -33,7 +33,7 @@ const Dashboard = ({location}) => {
 	const [user,setUser] = useState({name:"",workout_history:[],height:"",weight:""})
 	const getUser=()=>{
 		let userJWT=JSON.parse(localStorage.getItem('jwt'))
-		axios.get(`http://localhost:8000/api/user/${userJWT.user._id}`,{headers:{
+		axios.get(`https://xercise-tracker.herokuapp.com/user/${userJWT.user._id}`,{headers:{
 			Authorization: `Bearer ${userJWT.token}`
 		}})
 		.then(response=>{
