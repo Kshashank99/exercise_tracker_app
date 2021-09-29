@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from 'axios'
 import "./Dashboard.css";
+import { withRouter } from "react-router";
 // import phoneImg from "./images/phone.svg";
 const Review = ({user}) => {
 	return (
@@ -27,7 +28,8 @@ const Review = ({user}) => {
 		</article>
 	);
 };
-const Dashboard = () => {
+const Dashboard = ({location}) => {
+
 	const [user,setUser] = useState({name:"",workout_history:[],height:"",weight:""})
 	const getUser=()=>{
 		let userJWT=JSON.parse(localStorage.getItem('jwt'))
@@ -44,7 +46,12 @@ const Dashboard = () => {
 		})
 	}
 	useEffect(()=>{
+		if (!location.hash) {
+			window.location = window.location + '#loaded';
+			window.location.reload();
+		}
 		getUser()
+		
 	},[])
 	return (
 		<section className='container'>
@@ -57,4 +64,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default withRouter(Dashboard);

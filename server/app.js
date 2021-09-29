@@ -37,9 +37,6 @@ app.use("/api", userRouter);
 app.use("/api", foodRouter);
 app.use("/api", exerciseRouter);
 
-app.get("/", (req, res) => {
-	res.end("chalu h madarchod!");
-});
 
 const port = process.env.PORT || 8000;
 

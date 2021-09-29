@@ -23,11 +23,11 @@ import Profile from "./components/Profile";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
 import Signout from "./components/Signout";
-import { isAuthenticated } from "./auth";
+
 function App() {
 	return (
 		<BrowserRouter>
-			<Navbar authenticated={isAuthenticated()}/>
+			<Navbar/>
 			<Switch>
 				<Route path='/' exact component={Home} />
 				<Route path='/signin' exact component={Signin} />

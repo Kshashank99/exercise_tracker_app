@@ -35,6 +35,7 @@ export const signin = (userVal) => {
         .catch((err) => {
           console.log(err);
         });
+        
   };
 
   export const authenticate = (data, cb) => {

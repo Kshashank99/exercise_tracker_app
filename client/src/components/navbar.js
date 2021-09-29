@@ -6,13 +6,14 @@ import { isAuthenticated } from "../auth";
 import logo from "./logo.svg";
 // import Link  from "react-router-dom";
 import "./navbar.css";
-const Navbar = ({authenticated}) => {
+const Navbar = () => {
 	const [showLinks, setShowLinks] = useState(false);
 	const linksContainerRef = useRef(null);
 	const linksRef = useRef(null);
 	const toggleLinks = () => {
 		setShowLinks(!showLinks);
 	};
+	const [authenticated,setAutheticated] = useState(isAuthenticated())
 	useEffect(() => {
 		const linksHeight = linksRef.current.getBoundingClientRect().height;
 		if (showLinks) {
