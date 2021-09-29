@@ -42,7 +42,6 @@ const Exercise = () => {
 	// const allCategories = [new Set(category.map((item) => category))];
 	const [exercises, setExercises] = useState([]);
 	const [categories, setCategories] = useState([]);
-	console.log("exer", exercises);
 	return (
 		<main>
 			<section className='menu section'>
