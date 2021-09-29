@@ -88,3 +88,19 @@ exports.getExCats = (req,res)=>{
         }
     })
 }
+
+
+exports.getExerciseById=(req,res)=>{
+    Exercise.findOne({_id: req.params.id},(err,data)=>{
+        if(err){
+            res.status(400).json({
+                msg: err
+            })
+        }
+        else{
+            res.json({
+                data
+            })
+        }
+    })
+}
