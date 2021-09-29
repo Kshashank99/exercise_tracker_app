@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./exercise.css";
 import axios from "axios";
 // import { category } from "./catArray.js";
-import DispayCategories from "./displaycategory.js";
-import SelectedExercise from "./selectedexercise.js";
+import DispayCategories from "../displaycategory.js";
+import SelectedExercise from "../selectedexercise.js";
 // import { getExercises, getCategories, signup } from "../core/apiCore.js";
 // useEffect(() => {
 //     fetchExercise()

@@ -10,12 +10,12 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./auth/PrivateRoute";
 import Navbar from "./components/navbar";
-import Exercise from "./components/exercise";
+import Exercise from "./components/exercise/exercise";
 import Home from "./components/home";
 import Signin from "./components/signin";
 import Signup from "./components/signup";
-import Food from "./components/food";
-import ExerciseInfo from "./components/ExerciseInfo";
+import Food from "./components/food/food";
+import ExerciseInfo from "./components/singleExercise/ExerciseInfo";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
 
@@ -29,7 +29,11 @@ function App() {
 				<Route path='/signup' exact component={Signup} />
 				<PrivateRoute path='/dashboard' exact component={Dashboard} />
 				<Route path='/exercise' exact component={Exercise} />
-				<Route path='/exercise/exerciseInfo/:id' exact component={ExerciseInfo}/>
+				<Route
+					path='/exercise/exerciseInfo/:id'
+					exact
+					component={ExerciseInfo}
+				/>
 				<PrivateRoute path='/food' exact component={Food} />
 			</Switch>
 		</BrowserRouter>

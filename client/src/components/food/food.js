@@ -24,6 +24,14 @@ const Alert = ({ type, msg, removeAlert, list }) => {
 const List = ({ food, removeItem, editItem }) => {
 	return (
 		<div className='grocery-list'>
+			<div>
+				<ul style={{ display: "flex", justifyContent: "space-around" }}>
+					<h4 className='title'>Food</h4>
+					<h4 className='title'>calorie</h4>
+					<h4 className='title'>Fat</h4>
+					<h4 className='title'>carbs</h4>
+				</ul>
+			</div>
 			{food.map((foodItem) => {
 				const { _id, name, data } = foodItem;
 				return (
@@ -65,7 +73,7 @@ const List = ({ food, removeItem, editItem }) => {
 		</div>
 	);
 };
-const Food = () => {
+const Exercise = () => {
 	const [name, setName] = useState("");
 	const [food, setFood] = useState([]);
 	const [list, setList] = useState(getLocalStorage());
@@ -202,4 +210,4 @@ const Food = () => {
 	);
 };
 
-export default Food;
+export default Exercise;

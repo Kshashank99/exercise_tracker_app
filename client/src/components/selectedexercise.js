@@ -17,7 +17,10 @@ const selectedexercise = ({ items }) => {
 								<h4>{name}</h4>
 								<h4 className='price'>{category}</h4>
 							</header>
-							<p className='item-text'>{description.substring(0, 40)}...<Link to={`/exercise/exerciseInfo/${_id}`}>see more</Link></p>
+							<p className='item-text'>
+								{description.substring(0, 40)}...
+								<Link to={`/exercise/exerciseInfo/${_id}`}>see more</Link>
+							</p>
 						</div>
 					</article>
 				);
