@@ -14,7 +14,8 @@ import Exercise from "./components/exercise/exercise";
 import Home from "./components/home";
 import Signin from "./components/signin";
 import Signup from "./components/signup";
-import Food from "./components/food/food";
+// import Food from "./componenets/food/Food"
+import FoodLog from "./components/food/FoodLog";
 import ExerciseInfo from "./components/singleExercise/ExerciseInfo";
 // import CreateExercise from "./components/create-exercise.component";
 import Userinfo from "./components/user";
@@ -34,7 +35,7 @@ function App() {
 					exact
 					component={ExerciseInfo}
 				/>
-				<PrivateRoute path='/food' exact component={Food} />
+				<PrivateRoute path='/food' exact component={FoodLog} />
 			</Switch>
 		</BrowserRouter>
 	);
