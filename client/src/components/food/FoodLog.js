@@ -24,39 +24,27 @@ const Alert = ({ type, msg, removeAlert, list }) => {
 };
 const List = ({ food, removeItem, editItem }) => {
 	return (
-		<div className='grocery-list'>
-			<div>
-				<ul style={{ display: "flex", justifyContent: "space-around" }}>
-					<h4 className='title'>Food</h4>
-					<h4 className='title'>calorie</h4>
-					<h4 className='title'>Fat</h4>
-					<h4 className='title'>carbs</h4>
-				</ul>
-			</div>
-			{food.map((foodItem) => {
-				const { _id, name, data } = foodItem;
-				return (
-					<article className='grocery-item' key={_id}>
-						<h4 className='title'>{name}</h4>
-						<div className='food_data'>
-							{data.calories.quantity}
-							{data.calories.unit}
-						</div>
-						<div className='food_data'>
-							{data.carbs.quantity}
-							{data.carbs.unit}
-						</div>
-						<div className='food_data'>
-							{data.protein.quantity}
-							{data.protein.unit}
-						</div>
-						<div className='food_data'>
-							{data.fats.quantity}
-							{data.fats.unit}
-						</div>
-					</article>
-				);
-			})}
+		<div className='grocery-list' >
+            <table>
+                <th>Food</th>
+                <th>Calories</th>
+                <th>Carbs</th>
+                <th>Protein</th>
+                <th>Fat</th>
+                {food.map(foodItem=>{
+                    const { _id, name, data } = foodItem;
+                    return (
+                        <tr>
+                            <td>{name}</td>
+                            <td>{data.calories.quantity.toFixed(2)} {data.calories.unit}</td>
+                            <td>{data.carbs.quantity.toFixed(2)} {data.carbs.unit}</td>
+                            <td>{data.protein.quantity.toFixed(2)} {data.protein.unit}</td>
+                            <td>{data.fats.quantity.toFixed(2)} {data.fats.unit}</td>
+                        </tr>
+                        
+                    )
+                })}
+            </table>
 		</div>
 	);
 };
