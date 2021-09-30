@@ -54,7 +54,7 @@ const Routine = () => {
 	const getExercises = () => {
 		let user = JSON.parse(localStorage.getItem("jwt"));
 		axios
-			.get(`https://xer-app.herokuapp.com/user/${user.user._id}`, {
+			.get(`http://localhost:8000/api/user/${user.user._id}`, {
 				headers: {
 					Authorization: `Bearer ${user.token}`
 				}
@@ -74,7 +74,7 @@ const Routine = () => {
 		let user = JSON.parse(localStorage.getItem("jwt"));
 		axios
 			.put(
-				`https://xer-app.herokuapp.com/user/${user.user._id}`,
+				`http://localhost:8000/api/user/${user.user._id}`,
 				{ workout_history: exercise },
 				{
 					headers: {
@@ -93,7 +93,7 @@ const Routine = () => {
 		let user = JSON.parse(localStorage.getItem("jwt"));
 		axios
 			.put(
-				`https://xer-app.herokuapp.com/user/${user.user._id}`,
+				`http://localhost:8000/api/user/${user.user._id}`,
 				{ workout_history: [] },
 				{
 					headers: {

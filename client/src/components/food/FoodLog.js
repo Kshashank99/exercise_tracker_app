@@ -58,7 +58,7 @@ const FoodLog = () => {
 	const getFood = () => {
 		let user = JSON.parse(localStorage.getItem("jwt"));
 		axios
-			.get(`https://xer-app.herokuapp.com/user/${user.user._id}`, {
+			.get(`http://localhost:8000/api/user/${user.user._id}`, {
 				headers: {
 					Authorization: `Bearer ${user.token}`
 				}
@@ -78,7 +78,7 @@ const FoodLog = () => {
 		let user = JSON.parse(localStorage.getItem("jwt"));
 		axios
 			.put(
-				`https://xer-app.herokuapp.com/user/${user.user._id}`,
+				`http://localhost:8000/api/user/${user.user._id}`,
 				{ food_history: food },
 				{
 					headers: {
@@ -97,7 +97,7 @@ const FoodLog = () => {
 		let user = JSON.parse(localStorage.getItem("jwt"));
 		axios
 			.put(
-				`https://xer-app.herokuapp.com/user/${user.user._id}`,
+				`http://localhost:8000/api/user/${user.user._id}`,
 				{ food_history: [] },
 				{
 					headers: {
@@ -130,7 +130,7 @@ const FoodLog = () => {
 			setIsEditing(false);
 			showAlert(true, "success", "value changed");
 		} else {
-			Axios.post("https://xer-app.herokuapp.com/food/getFoodVals", {
+			Axios.post("http://localhost:8000/api/food/getFoodVals", {
 				item: name
 			}).then((response) => {
 				console.log("response", response);

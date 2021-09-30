@@ -12,7 +12,7 @@ import SelectedExercise from "../selectedexercise.js";
 const Exercise = () => {
 	const getExercises = (cat) => {
 		axios
-			.get(`https://xer-app.herokuapp.com/exercise/getExercises/${cat}`)
+			.get(`http://localhost:8000/api/exercise/getExercises/${cat}`)
 			.then((response) => {
 				// console.log(response.data.data)
 				setExercises(response.data.data);
@@ -23,7 +23,7 @@ const Exercise = () => {
 	};
 	const getCategories = () => {
 		axios
-			.get(`https://xer-app.herokuapp.com/exercise/categories`)
+			.get(`http://localhost:8000/api/exercise/categories`)
 			.then((response) => {
 				const item = response.data.categories;
 
